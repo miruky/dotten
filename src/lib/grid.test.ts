@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
+  countFilled,
   createGrid,
   createStore,
   deserializeGrid,
@@ -9,6 +10,7 @@ import {
   resizeGrid,
   serializeGrid,
   setCell,
+  symmetricPoints,
 } from './grid';
 
 describe('createGrid / setCell / getCell', () => {
@@ -59,6 +61,34 @@ describe('resizeGrid', () => {
     const smaller = resizeGrid(bigger, 8);
     expect(getCell(smaller, 1, 1)).toBe('#ff0000');
     expect(smaller.cells).toHaveLength(64);
+  });
+});
+
+describe('symmetricPoints', () => {
+  it('鏡像off では対象マスのみ', () => {
+    expect(symmetricPoints(8, 2, 3, false)).toEqual([[2, 3]]);
+  });
+
+  it('鏡像on では左右の2点を返す', () => {
+    expect(symmetricPoints(8, 1, 3, true)).toEqual([
+      [1, 3],
+      [6, 3],
+    ]);
+  });
+
+  it('中央列(偶数サイズに中心はないが鏡像が一致する場合)は1点に畳む', () => {
+    // 16マスでは x=7 と x=8 が対。x=7 の鏡像は 8 なので2点
+    expect(symmetricPoints(15, 7, 0, true)).toEqual([[7, 0]]); // 奇数サイズの中央
+  });
+});
+
+describe('countFilled', () => {
+  it('塗られたマス数を数える', () => {
+    const grid = createGrid(8);
+    expect(countFilled(grid)).toBe(0);
+    setCell(grid, 0, 0, '#000000');
+    setCell(grid, 1, 0, '#000000');
+    expect(countFilled(grid)).toBe(2);
   });
 });
 

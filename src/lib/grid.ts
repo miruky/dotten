@@ -24,6 +24,29 @@ export function setCell(grid: PixelGrid, x: number, y: number, color: string | n
   grid.cells[y * grid.size + x] = color;
 }
 
+/** 左右対称描画のために、対象マスとその鏡像を重複なく返す */
+export function symmetricPoints(
+  size: number,
+  x: number,
+  y: number,
+  mirror: boolean,
+): Array<[number, number]> {
+  if (!mirror) return [[x, y]];
+  const mx = size - 1 - x;
+  return mx === x
+    ? [[x, y]]
+    : [
+        [x, y],
+        [mx, y],
+      ];
+}
+
+export function countFilled(grid: PixelGrid): number {
+  let n = 0;
+  for (const c of grid.cells) if (c !== null) n += 1;
+  return n;
+}
+
 /** 同色の連結領域を塗りつぶす(4方向) */
 export function floodFill(grid: PixelGrid, x: number, y: number, color: string | null): void {
   if (x < 0 || y < 0 || x >= grid.size || y >= grid.size) return;
@@ -91,7 +114,7 @@ export interface GridStore {
 
 const STORAGE_KEY = 'dotten.grid.v1';
 
-interface StorageLike {
+export interface StorageLike {
   getItem(key: string): string | null;
   setItem(key: string, value: string): void;
 }
