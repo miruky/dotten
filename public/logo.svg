@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="logo-title">
+  <title id="logo-title">dotten - ドット絵の双葉のロゴ</title>
+  <style>
+    .bg { fill: #f2f3f5; }
+    .grid { stroke: #dde0e4; }
+    .a { fill: #3a7a82; }
+    .b { fill: #7cc0c8; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #16171a; }
+      .grid { stroke: #34373d; }
+      .a { fill: #7cc0c8; }
+      .b { fill: #3a7a82; }
+    }
+  </style>
+  <rect class="bg" width="128" height="128" rx="28"/>
+  <g class="grid" stroke-width="2" fill="none">
+    <path d="M24 44h80M24 64h80M24 84h80M44 24v80M64 24v80M84 24v80"/>
+    <rect x="24" y="24" width="80" height="80" rx="6"/>
+  </g>
+  <rect class="a" x="64" y="64" width="20" height="20"/>
+  <rect class="b" x="44" y="44" width="20" height="20"/>
+  <rect class="a" x="84" y="24" width="20" height="20" rx="4"/>
+  <rect class="b" x="24" y="84" width="20" height="20" rx="4"/>
+</svg>
