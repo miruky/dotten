@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="logo-title">
   <title id="logo-title">dotten - ドット絵の双葉のロゴ</title>
   <style>
-    .bg { fill: #f2f3f5; }
-    .grid { stroke: #dde0e4; }
-    .a { fill: #3a7a82; }
-    .b { fill: #7cc0c8; }
+    .bg { fill: #f4f3f0; }
+    .grid { stroke: #d6d3cb; }
+    .a { fill: #2f7d86; }
+    .b { fill: #6cc0c8; }
     @media (prefers-color-scheme: dark) {
-      .bg { fill: #16171a; }
-      .grid { stroke: #34373d; }
-      .a { fill: #7cc0c8; }
-      .b { fill: #3a7a82; }
+      .bg { fill: #15171a; }
+      .grid { stroke: #3b4047; }
+      .a { fill: #6cc0c8; }
+      .b { fill: #2f7d86; }
     }
   </style>
   <rect class="bg" width="128" height="128" rx="28"/>
