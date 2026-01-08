@@ -7,10 +7,25 @@
       name="description"
       content="ピクセルアートエディタ。ブラウザでドット絵を描き、最適化したSVGとして書き出す"
     />
-    <meta name="theme-color" content="#f2f3f5" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#16171a" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#f3f2ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15171a" media="(prefers-color-scheme: dark)" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <title>dotten | ドット絵エディタ</title>
+    <script>
+      // 描画前にテーマを確定してFOUCを防ぐ。保存値が無ければ端末の好みに従う。
+      (function () {
+        try {
+          var raw = localStorage.getItem('dotten.settings.v1');
+          var choice = raw ? JSON.parse(raw).theme : 'system';
+          if (choice !== 'light' && choice !== 'dark') {
+            choice = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+          }
+          document.documentElement.dataset.theme = choice;
+        } catch (_) {
+          document.documentElement.dataset.theme = 'light';
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>
