@@ -1,27 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 470" role="img" aria-labelledby="arch-title">
-  <title id="arch-title">dottenの構成図。UI層が盤面とSVG書き出しの2モジュールを使い、盤面はlocalStorageに保存される。</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 452" role="img" aria-labelledby="arch-title">
+  <title id="arch-title">dottenの構成図。UI層がgrid・settings・svg・encodeの純粋モジュールを使い、盤面と設定はlocalStorageに保存され、SVG/PNGと共有リンクを書き出す。</title>
   <style>
-    .box { fill: #fcfcfd; stroke: #dde0e4; stroke-width: 1.5; }
-    .layer { fill: #f2f3f5; stroke: #dde0e4; stroke-width: 1.5; }
-    .chip { fill: #e0eef0; stroke: none; }
-    .name { fill: #25282c; font: 600 15px system-ui, sans-serif; }
-    .label { fill: #696f78; font: 13px system-ui, sans-serif; }
-    .chip-text { fill: #3a7a82; font: 600 13px system-ui, sans-serif; }
-    .layer-name { fill: #3a7a82; font: 700 13px system-ui, sans-serif; letter-spacing: 0.08em; }
-    .edge { stroke: #696f78; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
-    .edge-label { fill: #696f78; font: 12px system-ui, sans-serif; }
-    #arrow path { fill: #696f78; }
+    .box { fill: #fbfaf8; stroke: #d6d3cb; stroke-width: 1.5; }
+    .layer { fill: #f4f3f0; stroke: #d6d3cb; stroke-width: 1.5; }
+    .chip { fill: #e1edee; stroke: none; }
+    .name { fill: #20232a; font: 600 15px system-ui, sans-serif; }
+    .label { fill: #767a82; font: 12.5px system-ui, sans-serif; }
+    .chip-text { fill: #246870; font: 600 12.5px system-ui, sans-serif; }
+    .layer-name { fill: #246870; font: 700 12px system-ui, sans-serif; letter-spacing: 0.1em; }
+    .edge { stroke: #9aa0a8; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+    .edge-label { fill: #8a9098; font: 11px system-ui, sans-serif; }
+    #arrow path { fill: #9aa0a8; }
     @media (prefers-color-scheme: dark) {
-      .box { fill: #202226; stroke: #34373d; }
-      .layer { fill: #16171a; stroke: #34373d; }
-      .chip { fill: #1f3438; }
-      .name { fill: #e7e9ec; }
-      .label { fill: #9aa1aa; }
-      .chip-text { fill: #7cc0c8; }
-      .layer-name { fill: #7cc0c8; }
-      .edge { stroke: #9aa1aa; }
-      .edge-label { fill: #9aa1aa; }
-      #arrow path { fill: #9aa1aa; }
+      .box { fill: #1c1f23; stroke: #3b4047; }
+      .layer { fill: #15171a; stroke: #3b4047; }
+      .chip { fill: #1d3236; }
+      .name { fill: #e9e7e2; }
+      .label { fill: #898e96; }
+      .chip-text { fill: #8ad3da; }
+      .layer-name { fill: #8ad3da; }
+      .edge { stroke: #767c84; }
+      .edge-label { fill: #767c84; }
+      #arrow path { fill: #767c84; }
     }
   </style>
   <defs>
@@ -30,37 +30,56 @@
     </marker>
   </defs>
 
-  <rect class="layer" x="40" y="32" width="800" height="128" rx="14"/>
-  <text class="layer-name" x="64" y="60">UI層(app.ts / main.ts)</text>
-  <text class="label" x="64" y="82">盤面DOMは作り直さず塗ったマスだけ差し替える。ストローク開始時に取り消しの控えを取る</text>
-  <rect class="chip" x="64" y="100" width="170" height="32" rx="16"/>
-  <text class="chip-text" x="149" y="121" text-anchor="middle">キャンバス(pointer)</text>
-  <rect class="chip" x="246" y="100" width="190" height="32" rx="16"/>
-  <text class="chip-text" x="341" y="121" text-anchor="middle">道具・パレット・取り消し</text>
-  <rect class="chip" x="448" y="100" width="170" height="32" rx="16"/>
-  <text class="chip-text" x="533" y="121" text-anchor="middle">書き出しプレビュー</text>
+  <rect class="layer" x="40" y="28" width="840" height="120" rx="14"/>
+  <text class="layer-name" x="64" y="55">UI層(app.ts / main.ts)</text>
+  <text class="label" x="64" y="77">盤面DOMは作り直さず塗ったマスだけ差し替える。ストローク開始時に取り消しの控えを取る</text>
+  <rect class="chip" x="64" y="96" width="168" height="30" rx="15"/>
+  <text class="chip-text" x="148" y="116" text-anchor="middle">キャンバス(pointer)</text>
+  <rect class="chip" x="244" y="96" width="214" height="30" rx="15"/>
+  <text class="chip-text" x="351" y="116" text-anchor="middle">道具・パレット・取り消し</text>
+  <rect class="chip" x="470" y="96" width="196" height="30" rx="15"/>
+  <text class="chip-text" x="568" y="116" text-anchor="middle">書き出し・共有・テーマ</text>
 
-  <path class="edge" d="M245 160 V224"/>
-  <path class="edge" d="M635 160 V224"/>
+  <path class="edge" d="M130 148 V196"/>
+  <path class="edge" d="M350 148 V196"/>
+  <path class="edge" d="M570 148 V196"/>
+  <path class="edge" d="M790 148 V196"/>
 
-  <rect class="box" x="155" y="228" width="180" height="96" rx="14"/>
-  <text class="name" x="245" y="262" text-anchor="middle">grid.ts</text>
-  <text class="label" x="245" y="286" text-anchor="middle">盤面の型・塗りつぶし・</text>
-  <text class="label" x="245" y="306" text-anchor="middle">大きさ変更・永続化</text>
+  <rect class="box" x="40" y="200" width="180" height="96" rx="14"/>
+  <text class="name" x="130" y="232" text-anchor="middle">grid.ts</text>
+  <text class="label" x="130" y="255" text-anchor="middle">盤面・塗りつぶし</text>
+  <text class="label" x="130" y="274" text-anchor="middle">対称・大きさ・永続化</text>
 
-  <rect class="box" x="545" y="228" width="180" height="96" rx="14"/>
-  <text class="name" x="635" y="262" text-anchor="middle">svg.ts</text>
-  <text class="label" x="635" y="286" text-anchor="middle">同色の連続をrectにまとめ</text>
-  <text class="label" x="635" y="306" text-anchor="middle">viewBox付きSVGへ</text>
+  <rect class="box" x="260" y="200" width="180" height="96" rx="14"/>
+  <text class="name" x="350" y="232" text-anchor="middle">settings.ts</text>
+  <text class="label" x="350" y="255" text-anchor="middle">道具設定の検証</text>
+  <text class="label" x="350" y="274" text-anchor="middle">palette / theme</text>
 
-  <path class="edge" d="M245 324 V388"/>
-  <text class="edge-label" x="257" y="362">保存・復元</text>
-  <path class="edge" d="M635 324 V388"/>
-  <text class="edge-label" x="647" y="362">コピー・保存</text>
+  <rect class="box" x="480" y="200" width="180" height="96" rx="14"/>
+  <text class="name" x="570" y="232" text-anchor="middle">svg.ts</text>
+  <text class="label" x="570" y="255" text-anchor="middle">行ラン+矩形結合で</text>
+  <text class="label" x="570" y="274" text-anchor="middle">rect数を最小化</text>
 
-  <rect class="box" x="155" y="392" width="180" height="48" rx="14"/>
-  <text class="name" x="245" y="421" text-anchor="middle">localStorage</text>
+  <rect class="box" x="700" y="200" width="180" height="96" rx="14"/>
+  <text class="name" x="790" y="232" text-anchor="middle">encode.ts</text>
+  <text class="label" x="790" y="255" text-anchor="middle">盤面 ⇄ base64url</text>
+  <text class="label" x="790" y="274" text-anchor="middle">共有文字列の符号化</text>
 
-  <rect class="box" x="545" y="392" width="180" height="48" rx="14"/>
-  <text class="name" x="635" y="421" text-anchor="middle">SVGファイル</text>
+  <path class="edge" d="M120 296 C 120 336, 240 336, 240 372"/>
+  <path class="edge" d="M360 296 C 360 336, 250 336, 250 372"/>
+  <text class="edge-label" x="300" y="346" text-anchor="middle">保存・復元</text>
+  <path class="edge" d="M570 296 V372"/>
+  <text class="edge-label" x="582" y="346">コピー・保存</text>
+  <path class="edge" d="M790 296 V372"/>
+  <text class="edge-label" x="802" y="346">共有</text>
+
+  <rect class="box" x="150" y="376" width="190" height="50" rx="12"/>
+  <text class="name" x="245" y="400" text-anchor="middle">localStorage</text>
+  <text class="label" x="245" y="416" text-anchor="middle">盤面・設定</text>
+
+  <rect class="box" x="480" y="376" width="180" height="50" rx="12"/>
+  <text class="name" x="570" y="406" text-anchor="middle">SVG / PNGファイル</text>
+
+  <rect class="box" x="700" y="376" width="180" height="50" rx="12"/>
+  <text class="name" x="790" y="406" text-anchor="middle">共有リンク(URL)</text>
 </svg>
